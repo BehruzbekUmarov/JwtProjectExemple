@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jwt.Application", "Jwt.Application\Jwt.Application.csproj", "{43B960D5-955D-4DF4-87F4-E0538A495EE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jwt.Domain", "Jwt.Domain\Jwt.Domain.csproj", "{F19C08EE-5396-429B-AA57-8A53A96E3F11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jwt.Infrastucture", "Jwt.Infrastucture\Jwt.Infrastucture.csproj", "{B1561D2F-1D41-4368-80E3-B8C25F8A9980}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jwt.WebUI", "Jwt.WebUI\Jwt.WebUI.csproj", "{A3C4A597-57B2-40C9-874B-53183C6F5EB9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43B960D5-955D-4DF4-87F4-E0538A495EE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43B960D5-955D-4DF4-87F4-E0538A495EE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43B960D5-955D-4DF4-87F4-E0538A495EE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43B960D5-955D-4DF4-87F4-E0538A495EE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F19C08EE-5396-429B-AA57-8A53A96E3F11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F19C08EE-5396-429B-AA57-8A53A96E3F11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F19C08EE-5396-429B-AA57-8A53A96E3F11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F19C08EE-5396-429B-AA57-8A53A96E3F11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1561D2F-1D41-4368-80E3-B8C25F8A9980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1561D2F-1D41-4368-80E3-B8C25F8A9980}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1561D2F-1D41-4368-80E3-B8C25F8A9980}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1561D2F-1D41-4368-80E3-B8C25F8A9980}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3C4A597-57B2-40C9-874B-53183C6F5EB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3C4A597-57B2-40C9-874B-53183C6F5EB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3C4A597-57B2-40C9-874B-53183C6F5EB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3C4A597-57B2-40C9-874B-53183C6F5EB9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
