@@ -1,7 +1,7 @@
 ﻿using Jwt.Application.Interfaces;
 using Jwt.Application.Model;
-using Jwt.Application.Options;
 using Jwt.Domain.Entities;
+using Jwt.Domain.Options;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

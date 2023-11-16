@@ -1,6 +1,6 @@
 using Jwt.Application.Interfaces;
-using Jwt.Application.Options;
 using Jwt.Domain.Data;
+using Jwt.Domain.Options;
 using Jwt.Infrastucture.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +8,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHttpContextAccessor();
 
 var connection = builder.Configuration.GetConnectionString("DbContext");
 

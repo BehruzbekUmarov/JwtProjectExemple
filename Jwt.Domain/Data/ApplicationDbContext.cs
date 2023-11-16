@@ -1,6 +1,6 @@
 ﻿using Jwt.Domain.Entities;
-using Jwt.Domain.Options;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Jwt.Domain.Data;
 
@@ -19,6 +19,6 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(AssemblyReference.Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }

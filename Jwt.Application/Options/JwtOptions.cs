@@ -1,4 +1,4 @@
-﻿namespace Jwt.Application.Options;
+﻿namespace Jwt.Domain.Options;
 
 public class JwtOptions
 {
