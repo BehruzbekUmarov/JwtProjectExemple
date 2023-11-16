@@ -1,11 +1,9 @@
 using Jwt.Application.Interfaces;
 using Jwt.Application.Options;
+using Jwt.Domain.Data;
 using Jwt.Infrastucture.Services;
-using Jwt.WebUI.Data;
-using Jwt.WebUI.Managers.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -35,9 +33,14 @@ builder.Services.AddAuthentication(d =>
         };
     });
 
+builder.Services.AddAuthorization(op =>
+{
+    op.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin").RequireRole("name"));
+});
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(connection);
+    options.UseSqlite(connection);
 });
 
 builder.Services.AddScoped<ITokenManager, TokenManager>()
@@ -46,19 +49,19 @@ builder.Services.AddScoped<ITokenManager, TokenManager>()
 
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JWT"));
 
+builder.Services.AddRouting(b =>
+{
+    b.LowercaseUrls = true;
+});
+
 builder.Services.AddControllers();
 
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

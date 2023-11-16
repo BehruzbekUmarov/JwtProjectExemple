@@ -1,14 +1,13 @@
 ﻿using Jwt.Application.Model;
-using Jwt.WebUI.Entities;
-using Jwt.WebUI.Model;
+using Jwt.Domain.Entities;
+using Microsoft.AspNetCore.Http;
 
-namespace Jwt.WebUI.Managers.Interfaces
+namespace Jwt.Application.Interfaces;
+
+public interface IUserManager
 {
-    public interface IUserManager
-    {
-        Task<User> RegisterUser(UserDto request);
-        Task<string?> LoginUser(UserDto request, HttpContent httpContext);
-        Task<string?> GenerateRefreshToken(HttpContent httpContext);
-        Task<string?> SetUserRoleAsync(SetRoleDto dto);
-    }
+    Task<User> RegisterUser(UserDto request);
+    Task<string?> LoginUser(UserDto request, HttpContext httpContext);
+    Task<string?> GenerateRefreshToken(HttpContext httpContext);
+    Task<string?> SetUserRoleAsync(RoleDto dto);
 }

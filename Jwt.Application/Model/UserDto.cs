@@ -1,8 +1,7 @@
-﻿namespace Jwt.WebUI.Model
+﻿namespace Jwt.Application.Model;
+
+public class UserDto
 {
-    public class UserDto
-    {
-        public required string Username { get; set; }
-        public required string Password { get; set; }
-    }
+    public required string Username { get; set; }
+    public required string Password { get; set; }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Jwt.Application.Options;
+namespace Jwt.Domain.Options;
 
 public static class AssemblyReference
 {

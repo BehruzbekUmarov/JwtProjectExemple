@@ -1,10 +1,9 @@
-﻿namespace Jwt.Application.Interfaces
+﻿namespace Jwt.Application.Interfaces;
+
+public interface IPasswordManager
 {
-    public interface IPasswordManager
-    {
-        public Task HashPassword(string password, out byte[] hashedPassword, out byte[] hashedSalt);
-        public Task<bool> VerifyHashedPassword(string password, byte[] passwordHash, byte[] passwordSalt);
-    }
+    public Task HashPassword(string password, out byte[] hashedPassword, out byte[] hashedSalt);
+    public Task<bool> VerifyHashedPassword(string password, byte[] passwordHash, byte[] passwordSalt);
 }
 
 

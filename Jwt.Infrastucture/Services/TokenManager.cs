@@ -1,63 +1,58 @@
 ﻿using Jwt.Application.Interfaces;
 using Jwt.Application.Model;
 using Jwt.Application.Options;
-using Jwt.WebUI.Entities;
+using Jwt.Domain.Entities;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Jwt.Infrastucture.Services
+namespace Jwt.Infrastucture.Services;
+
+public class TokenManager : ITokenManager
 {
-    public class TokenManager : ITokenManager
+    private readonly IOptions<JwtOptions> _options;
+    public TokenManager(IOptions<JwtOptions>? options)
     {
-        private readonly IOptions<JwtOptions> _options;
-        public TokenManager(IOptions<JwtOptions>? options)
+        _options = options;
+    }
+    public RefreshToken GenerateRefreshToken()
+    {
+        var refreshToken = new RefreshToken
         {
-            _options = options;
-        }
-        public RefreshToken GenerateRefreshToken()
+            Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
+            Expires = DateTime.Now.AddDays(4),
+            Created = DateTime.Now
+        };
+
+        return refreshToken;
+    }
+
+    public string GenerateToken(User user)
+    {
+        List<Claim> claims = new List<Claim>
         {
-            var refreshToken = new RefreshToken
-            {
-                Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
-                Expires = DateTime.Now.AddDays(4),
-                Created = DateTime.Now
-            };
+            new ("Id", user.Id.ToString()),
+            new (JwtRegisteredClaimNames.Name, user.UserName)
+        };
 
-            return refreshToken;
-        }
+        claims.Add(new("Role", user.Role.ToString()));
 
-        public string GenerateToken(User user)
-        {
-            List<Claim> claims = new List<Claim>
-            {
-                new ("Id", user.Id.ToString()),
-                new (JwtRegisteredClaimNames.Name, user.UserName)
-            };
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.Value.Key));
 
-            claims.Add(new("Role", user.Role.ToString()));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.Value.Key));
+        var token = new JwtSecurityToken(
+            claims: claims,
+            expires: DateTime.UtcNow.AddDays(2),
+            audience: _options.Value.Audience,
+            issuer: _options.Value.Issuer,
+            signingCredentials: creds);
 
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
-            var token = new JwtSecurityToken(
-                claims: claims,
-                expires: DateTime.UtcNow.AddDays(2),
-                audience: _options.Value.Audience,
-                issuer: _options.Value.Issuer,
-                signingCredentials: creds);
-
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-
-            return jwt;
-        }
+        return jwt;
     }
 }

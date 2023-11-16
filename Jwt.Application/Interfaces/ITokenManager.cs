@@ -1,16 +1,10 @@
 ﻿using Jwt.Application.Model;
-using Jwt.WebUI.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Jwt.Domain.Entities;
 
-namespace Jwt.Application.Interfaces
+namespace Jwt.Application.Interfaces;
+
+public interface ITokenManager
 {
-    public interface ITokenManager
-    {
-        public string GenerateToken(User user);
-        public RefreshToken GenerateRefreshToken();
-    }
+    public string GenerateToken(User user);
+    public RefreshToken GenerateRefreshToken();
 }

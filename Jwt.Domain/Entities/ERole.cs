@@ -1,8 +1,7 @@
-﻿namespace Jwt.WebUI.Entities
+﻿namespace Jwt.Domain.Entities;
+
+public enum ERole
 {
-    public enum ERole
-    {
-        Admin = 0,
-        User = 1
-    }
+    Admin = 0,
+    User = 1
 }
